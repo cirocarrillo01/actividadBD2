@@ -78,4 +78,4 @@ INSERT INTO proyecto (nombre, descripcion, fecha_inicial, fecha_final, presupues
 VALUES ('App Biblioteca','App móvil de préstamos','2025-03-01',NULL, 9000000, 320,
         (SELECT docente_id FROM docente WHERE numero_documento='CC2001'));
 
-
+-- C
