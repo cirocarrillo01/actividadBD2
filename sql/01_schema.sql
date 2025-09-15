@@ -1,5 +1,5 @@
 -- schema.sql (MySQL 8.0+)
-
+USE proyectos_informaticos;
 -- Limpieza
 DROP TRIGGER IF EXISTS tr_docente_after_update;
 DROP TRIGGER IF EXISTS tr_docente_after_delete;
@@ -70,6 +70,13 @@ DROP PROCEDURE IF EXISTS sp_docente_crear;
 DROP PROCEDURE IF EXISTS sp_docente_leer;
 DROP PROCEDURE IF EXISTS sp_docente_actualizar;
 DROP PROCEDURE IF EXISTS sp_docente_eliminar;
+-- Procedimientos PROYECTO
+DROP PROCEDURE IF EXISTS sp_proyecto_crear;
+DROP PROCEDURE IF EXISTS sp_proyecto_leer;
+DROP PROCEDURE IF EXISTS sp_proyecto_actualizar;
+DROP PROCEDURE IF EXISTS sp_proyecto_eliminar;
+-- UDF
+DROP FUNCTION IF EXISTS fn_promedio_presupuesto_por_docente;
 
 DELIMITER $$
 CREATE PROCEDURE sp_docente_crear(
@@ -116,12 +123,6 @@ CREATE PROCEDURE sp_docente_eliminar(IN p_docente_id INT)
 BEGIN
   DELETE FROM docente WHERE docente_id = p_docente_id;
 END$$
-
--- Procedimientos PROYECTO
-DROP PROCEDURE IF EXISTS sp_proyecto_crear;
-DROP PROCEDURE IF EXISTS sp_proyecto_leer;
-DROP PROCEDURE IF EXISTS sp_proyecto_actualizar;
-DROP PROCEDURE IF EXISTS sp_proyecto_eliminar;
 
 CREATE PROCEDURE sp_proyecto_crear(
   IN p_nombre           VARCHAR(120),
@@ -174,8 +175,6 @@ BEGIN
   DELETE FROM proyecto WHERE proyecto_id = p_proyecto_id;
 END$$
 
--- UDF
-DROP FUNCTION IF EXISTS fn_promedio_presupuesto_por_docente;
 CREATE FUNCTION fn_promedio_presupuesto_por_docente(p_docente_id INT)
 RETURNS DECIMAL(12,2)
 DETERMINISTIC
