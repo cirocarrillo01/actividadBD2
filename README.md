@@ -105,7 +105,7 @@ Uso académico.
 10. Query 10 Cantidad de proyectos manejados por un docente y su presupuesto
 11. Query 11 identificar proyectos activos
 
-### 📄Autor
+### 📄Estudiante
 - Nombre: ciro antonio carrillo mendoza
 - Curso: Base de Datos
 - Semestre: 3
