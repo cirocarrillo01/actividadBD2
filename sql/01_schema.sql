@@ -314,7 +314,7 @@ END$$
 
 -- TRIGGERS --
 
--- actualizacion de docente
+-- actualizacion de docente.
 
 /* Crea el trigger para guardar copia de seguridad en la tabla de auditoria de docente,
  * inserta la informacion copia_actualizada_docente con los nuevos valores establecido en
@@ -333,7 +333,7 @@ BEGIN
     (NEW.docente_id, NEW.numero_documento, NEW.nombres, NEW.titulo, NEW.anios_experiencia, NEW.direccion, NEW.tipo_docente);
 END$$
 
--- eliminacion de docente
+-- eliminacion de docente.
 
 /* Crea el trigger para guardar copia del estado anterior en la tabla de auditoria de docente,
  * inserta la informacion copia_eliminados_docente con los datos del docente anteriores*/
