@@ -15,7 +15,7 @@ Implementar en **MySQL**:
 - **Triggers** de auditoría para ACTUALIZADOS y ELIMINADOS.
 
 ---
-
+ASD
 ## 📂 Estructura
 ```
 proyectos_informaticos_mysql/
@@ -71,3 +71,43 @@ python -m http.server 8080
 
 ## 📜 Licencia
 Uso académico.
+
+# Actividad 2 Base de Datos
+
+📂 - Archivos SQL utilizados en la actividad:
+
+- schema.sql   → estructura (tablas, constraints, procedimientos)
+- seed.sql     → datos iniciales o pruebas
+- queries.sql  → pruebas temporales, selects, debug
+
+## Proyecto Base de Datos – Gestión de Docentes y Proyectos
+
+### 📄Contenido
+
+- Tablas con restricciones de integridad
+- Procedimientos almacenados (CRUD)
+- Función escalar (UDF)
+- Triggers de auditoría
+- Pruebas de integridad y errores controlados
+- Índices para optimización
+
+### 📄Queries presentes
+
+1. Query 1 Proyectos y su docente jefe
+2. Query 2 Promedio de presupuesto por docente (UDF)
+3. Query 3 Verificar trigger UPDATE (auditoría)
+4. Query 4 Verificar trigger DELETE (auditoría)
+5. Query 5 Validar CHECKs
+6. Query 6 Docentes con sus proyectos
+7. Query 7 Total de horas por docente
+8. Query 8 Inserciones vía procedimientos
+9. Query 9 Inserciones directas (opcional)
+10. Query 10 Cantidad de proyectos manejados por un docente y su presupuesto
+11. Query 11 identificar proyectos activos
+
+### 📄Autor
+- Nombre: ciro antonio carrillo mendoza
+- Curso: Base de Datos
+- Semestre: 3
+- Año: 2025
+

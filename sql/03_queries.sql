@@ -53,6 +53,7 @@ ORDER BY auditoria_id DESC
 LIMIT 10;
 
 -- Q4: Verificar trigger DELETE (auditoría)
+
 /*Usando los datos de la base de datos proyectos informaticos, seleciona todos los datos
  * de copia_eliminados_docente donde se ordenan los resultado de la consulta por id auditoria
  * de forma decendente con un limite de 10
@@ -66,6 +67,7 @@ ORDER BY auditoria_id DESC
 LIMIT 10;
 
 -- Q5: Validar CHECKs
+
 /* Usando los datos de la base de datos proyectos informaticos, de proyecto se evalua las
  * condiciones especificas(checks) si los datos almacenados en fecha de final e inicial 
  * sean coerentes como que la fecha inicial no este antes que la final o que el valor de 
@@ -83,6 +85,7 @@ WHERE (fecha_final IS NULL OR fecha_final >= fecha_inicial)
   AND horas >= 0;
 
 -- Q6: Docentes con sus proyectos
+
 /*Usando los datos de la base de datos proyectos informaticos de la tabla docente, 
  * donde se maneja los datos de id docente y su nombre, y los datos de id proyecto y su nombre
  * se aplica left join entre la tabla docente y proyecto por las id que tiene clave foranea
@@ -105,6 +108,7 @@ LEFT JOIN proyecto p ON d.docente_id = p.docente_id_jefe
 ORDER BY d.docente_id LIMIT 10;
 
 -- Q7: Total de horas por docente
+
 /*Usando los datos de la base de datos proyectos informaticos de la tabla docente, 
  * selecionamos docente id, nombres y horas que se comparan las tablas docente y proyecto
  * llmando los datos del mismo id establecidos en el vinculo con la llave foranea
@@ -199,6 +203,7 @@ SELECT d.docente_id, d.nombres, COUNT(p.proyecto_id) AS cantidad_proyectos, SUM(
 FROM docente d
 LEFT JOIN proyecto p ON d.docente_id = p.docente_id_jefe
 GROUP BY d.docente_id, d.nombres ORDER BY total_presupuesto DESC;
+
 
 -- Q11: identificar proyectos activos
 
