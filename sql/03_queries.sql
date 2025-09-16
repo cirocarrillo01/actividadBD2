@@ -200,27 +200,7 @@ FROM docente d
 LEFT JOIN proyecto p ON d.docente_id = p.docente_id_jefe
 GROUP BY d.docente_id, d.nombres ORDER BY total_presupuesto DESC;
 
--- Q11: Borrar datos de tabla para empezar de nuevo
-
-/*reiniciar la tabla con los datos permite, probar de nuevo las queries con entorno mas limpio
- */
-
--- deactiva la llave foranea
-SET FOREIGN_KEY_CHECKS = 0;
--- truncate elimina los datos de las celdas
-TRUNCATE TABLE docente;
-TRUNCATE TABLE proyecto;
-TRUNCATE TABLE copia_actualizados_docente;
-TRUNCATE TABLE copia_eliminados_docente;
--- Visualiza la eliminacion de datos
-SELECT * FROM docente;
-SELECT * FROM proyecto;
-SELECT * FROM copia_actualizados_docente;
-SELECT * FROM copia_eliminados_docente;
--- Activa la llave foranea
-SET FOREIGN_KEY_CHECKS = 1;
-
--- otra prueba --
+-- Q11: identificar proyectos activos
 
 /* Usando los datos de la base de datos proyectos_informaticos de la tabla de
  * proyectos que aun no han terminado, solo salen los datos de los proyecto que aun estan 
@@ -243,3 +223,22 @@ SELECT nombre, fecha_inicial, presupuesto
 FROM proyecto
 WHERE fecha_final IS NULL AND presupuesto BETWEEN 100000 AND 170000
 ORDER BY fecha_inicial;
+
+-- reiniciar --
+/*reiniciar la tabla con los datos permite, probar de nuevo las queries con entorno mas limpio
+ */
+
+-- deactiva la llave foranea
+SET FOREIGN_KEY_CHECKS = 0;
+-- truncate elimina los datos de las celdas
+TRUNCATE TABLE docente;
+TRUNCATE TABLE proyecto;
+TRUNCATE TABLE copia_actualizados_docente;
+TRUNCATE TABLE copia_eliminados_docente;
+-- Visualiza la eliminacion de datos
+SELECT * FROM docente;
+SELECT * FROM proyecto;
+SELECT * FROM copia_actualizados_docente;
+SELECT * FROM copia_eliminados_docente;
+-- Activa la llave foranea
+SET FOREIGN_KEY_CHECKS = 1;
