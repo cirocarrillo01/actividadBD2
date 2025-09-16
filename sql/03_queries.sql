@@ -66,6 +66,19 @@ SELECT * FROM copia_eliminados_docente
 ORDER BY auditoria_id DESC
 LIMIT 10;
 
+-- extra
+
+/*Usando los datos de la base de datos proyectos informaticos, seleciona todos los datos
+ * de copia_eliminados_docente donde se ordenan los resultado de la consulta por id auditoria
+ * de los años de experiencia mayor o igaul a 5
+ * tabla muestra: todos los datos o atributos de la tabla copia_eliminados_docente y
+ * los docentes eliminados
+ * */
+USE proyectos_informaticos;
+SELECT * FROM copia_eliminados_docente
+WHERE anios_experiencia >=5
+ORDER BY auditoria_id ASC;
+
 -- Q5: Validar CHECKs
 
 /* Usando los datos de la base de datos proyectos informaticos, de proyecto se evalua las
