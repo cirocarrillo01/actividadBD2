@@ -44,12 +44,17 @@ CREATE TABLE docente (
   CONSTRAINT ck_docente_anios CHECK (anios_experiencia >= 0)
 ) ENGINE=InnoDB;
 
+-- mirar tabla docente
+USE proyectos_informaticos;
+DESCRIBE docente;
+
 /* tabla proyecto contiene; proyecto id con clave primaria y auto incremento, nombre,
  * descripcion, fecha inicial, fecha final, presupuesto, horas, docente id jefe 
  * con sus especificaciones, evalua que las horas no sea un valor negativo,
  * evalua que el presupuesto no sea un valor negativo, se evalua que la fecha final tenga datos y
  * no sea antes de la inical, clave foranea se vincula docente_id_jefe con docente_id de la tabla docente*/
 -- OR condicional
+-- REFERENCES = definimos llaver foraneas
 
 CREATE TABLE proyecto (
   proyecto_id      INT AUTO_INCREMENT PRIMARY KEY,
@@ -66,6 +71,11 @@ CREATE TABLE proyecto (
   CONSTRAINT fk_proyecto_docente FOREIGN KEY (docente_id_jefe) REFERENCES docente(docente_id)
     ON UPDATE CASCADE ON DELETE RESTRICT
 ) ENGINE=InnoDB;
+
+-- mirar tabla proyecto
+USE proyectos_informaticos;
+DESCRIBE proyecto;
+
 
 -- AUDITORIA --
 
@@ -90,6 +100,11 @@ CREATE TABLE copia_actualizados_docente (
   usuario_sql        VARCHAR(128) NOT NULL DEFAULT (CURRENT_USER())#128 caracteres
 ) ENGINE=InnoDB;
 
+-- mirar tabla
+USE proyectos_informaticos;
+DESCRIBE copia_actualizados_docente;
+
+
 /* copia de los eliminados, tabla contiene; auditoria id con auto incremento,
  * llave primaria, docente id, numero documento, nombres, titulo, años de experiencia,
  * direccion, tipo docente, accion fecha un valor por defecto, usuario sql un valor por defecto */
@@ -108,6 +123,11 @@ CREATE TABLE copia_eliminados_docente (
   accion_fecha       DATETIME     NOT NULL DEFAULT (UTC_TIMESTAMP()),
   usuario_sql        VARCHAR(128) NOT NULL DEFAULT (CURRENT_USER())
 ) ENGINE=InnoDB;
+
+-- mirar tabla
+USE proyectos_informaticos;
+DESCRIBE copia_eliminados_docente;
+
 
 -- ELIMINAR LOS PROCEDIMIENTOS Y FUNCIONES PREVIAS ---
 -- PROCEDURE = procedimiento almacenado - IF EXISTS = solo si existe
@@ -296,9 +316,13 @@ END$$
 -- UDF
 
 /* Se crea una funcion para el promedio del presupuesto de todos los proyectos por un docente dado
- * el resultado se puede representar con 12 cifras y con 2 decimales*/
+ * el resultado se puede representar con 12 cifras y con 2 decimales, esta funcion se usa en Q2 de queries*/
 -- V_prom = valor promedio o AVG
 -- INTO = guarda variable en este caso
+-- DECLARE = declarar variable, cursores o condiciones (detro triggers y funciones)
+-- RETURN = devolver un valor (funciones)
+-- DETERMINISTIC = el resultado depende unicamente de los valores de entrada (funcion)
+-- READS SQL DATA = la funcion solo lee datos de la tabla [proyecto]
 
 CREATE FUNCTION fn_promedio_presupuesto_por_docente(p_docente_id INT)
 RETURNS DECIMAL(12,2)
@@ -314,7 +338,7 @@ END$$
 
 -- TRIGGERS --
 
--- actualizacion de docente.
+-- actualizacion de docente
 
 /* Crea el trigger para guardar copia de seguridad en la tabla de auditoria de docente,
  * inserta la informacion copia_actualizada_docente con los nuevos valores establecido en
@@ -333,7 +357,7 @@ BEGIN
     (NEW.docente_id, NEW.numero_documento, NEW.nombres, NEW.titulo, NEW.anios_experiencia, NEW.direccion, NEW.tipo_docente);
 END$$
 
--- eliminacion de docente.
+-- eliminacion de docente
 
 /* Crea el trigger para guardar copia del estado anterior en la tabla de auditoria de docente,
  * inserta la informacion copia_eliminados_docente con los datos del docente anteriores*/
