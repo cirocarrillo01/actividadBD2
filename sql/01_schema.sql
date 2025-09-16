@@ -141,6 +141,7 @@ DROP FUNCTION IF EXISTS fn_promedio_presupuesto_por_docente;
 -- DELIMITER = el delimitador de comandos a $$ o // temporalmente
 
 DELIMITER $$
+/*se cierra el DELIMITER de nuevo se $$ se retoma el ;*/
 
 -- CREAR
 
